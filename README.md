@@ -1,4 +1,52 @@
+# Transformer-based Language Model for Wikipedia Article Summarization
+This repository contains a language model inspired by the Transformer architecture. It dynamically fetches and cleans Wikipedia articles, formulates a question based on the title of the article, and pairs it with concise content. The model is then trained on this Q&A format, allowing for the generation of similar sequences.
 
+## Features
+- Uses the Transformer architecture for the language model.
+- Dynamically fetches random Wikipedia articles for fresh and diverse training data.
+- Cleans and processes the Wikipedia content to generate a Q&A format for training.
+- Built upon the example provided by Andrej Karpathy, titled "nanogpt".
+## Prerequisites
+- Python 3.x
+- PyTorch
+- Beautiful Soup 4
+## Model Architecture
+The model utilizes the self-attention mechanism, a hallmark of the Transformer architecture. Specifically, the architecture is comprised of:
+
+- Multi-head self-attention mechanism.
+- Positional embeddings to understand the order of the sequence.
+- Feed-forward neural networks.
+- Layer normalization and dropout for regularization.
+## Data Processing
+To simulate a summarization task, the following steps are taken:
+
+- Fetch random Wikipedia articles.
+- Formulate a question based on the title of the article (e.g., "Who is Albert Einstein?" or "What is Quantum Mechanics?").
+- Clean and process the content of the article to generate a concise answer.
+- Train the model on this Q&A format.
+## Training
+Training parameters are easily configurable. The current settings are:
+
+- Batch size: 64
+- Block size: 256
+- Max iterations: 5000
+- Learning rate: 3e-4
+During training, evaluation is performed at regular intervals to keep track of the model's performance on the training and validation sets.
+
+## Usage
+Ensure all required libraries are installed.
+Clone this repository.
+Run the main script to train the model. The script will:
+- Fetch and process Wikipedia articles.
+- Train the model on the generated Q&A format.
+- Generate text at the end of each epoch.
+- Save the model's state.
+
+This implementation was inspired and built upon the example provided by Andrej Karpathy, specifically the "nanogpt" example. It incorporates the Transformer architecture to model the probability distribution of sequences of words for text generation.
+.cbrwx
+
+---original readme below
+"
 # nanogpt-lecture
 
 Code created in the [Neural Networks: Zero To Hero](https://karpathy.ai/zero-to-hero.html) video lecture series, specifically on the first lecture on nanoGPT. Publishing here as a Github repo so people can easily hack it, walk through the `git log` history of it, etc.
@@ -8,3 +56,4 @@ NOTE: sadly I did not go too much into model initialization in the video lecture
 ### License
 
 MIT
+"
