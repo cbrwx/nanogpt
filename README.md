@@ -42,6 +42,39 @@ Run the main script to train the model. The script will:
 - Generate text at the end of each epoch.
 - Save the model's state.
 
+# Model Components:
+## Token Embeddings:
+
+- self.token_embedding_table = nn.Embedding(vocab_size, n_embd)
+The model begins by embedding tokens into a continuous vector space. The vocab_size determines the number of unique tokens, and n_embd is the embedding size. Each token is transformed into a n_embd-dimensional vector.
+## Positional Embeddings:
+
+- self.position_embedding_table = nn.Embedding(block_size, n_embd)
+Given that the Transformer does not have inherent sequence awareness, positional embeddings are added to the token embeddings to give the model information about the position of a token in a sequence.
+## Blocks (Transformer Layers):
+
+- self.blocks = nn.Sequential(*[Block(n_embd, n_head=n_head) for _ in range(n_layer)])
+The model comprises multiple transformer blocks, each containing multi-head self-attention mechanisms and feed-forward networks.
+## Layer Normalization and Linear Head:
+
+- self.ln_f = nn.LayerNorm(n_embd)
+- self.lm_head = nn.Linear(n_embd, vocab_size)
+After passing through all transformer blocks, the output goes through layer normalization. The lm_head is the final linear layer that projects the output back to the vocabulary size, effectively allowing the model to predict the next token in a sequence.
+## Weight Initialization:
+
+- self.apply(self._init_weights)
+The weights of the model are initialized using the _init_weights method. This ensures that the weights have values that are conducive to training. Specifically:
+- Linear layers are initialized with a normal distribution with a mean of 0 and a standard deviation of 0.02.
+- Biases in linear layers are initialized with zeros.
+- Embedding weights are initialized with a normal distribution with a mean of 0 and a standard deviation of 0.02. 
+
+When data is passed through the model (forward method), the following steps occur:
+
+- Token and positional embeddings are fetched and summed.
+- The combined embeddings pass through the transformer blocks.
+- The output is normalized and passed through the final linear layer.
+- If targets are provided, the loss is computed; otherwise, only the logits are returned.
+
 This implementation was inspired and built upon the example provided by Andrej Karpathy, specifically the "nanogpt" example. It incorporates the Transformer architecture to model the probability distribution of sequences of words for text generation.
 .cbrwx
 
