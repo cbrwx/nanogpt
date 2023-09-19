@@ -1,3 +1,5 @@
+# gpty2_wiki.py
+
 # Transformer-based Language Model for Wikipedia Article Summarization
 This repository contains a language model inspired by the Transformer architecture. It dynamically fetches and cleans Wikipedia articles, formulates a question based on the title of the article, and pairs it with concise content. The model is then trained on this Q&A format, allowing for the generation of similar sequences.
 
