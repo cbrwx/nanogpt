@@ -78,9 +78,10 @@ When data is passed through the model (forward method), the following steps occu
 - If targets are provided, the loss is computed; otherwise, only the logits are returned.
 
 This implementation was inspired and built upon the example provided by Andrej Karpathy, specifically the "nanogpt" example. It incorporates the Transformer architecture to model the probability distribution of sequences of words for text generation.
+
 .cbrwx
 
----original readme below
+<---> original readme below <--->
 "
 # nanogpt-lecture
 
