@@ -4,6 +4,7 @@ from torch.nn import functional as F
 import requests
 from bs4 import BeautifulSoup
 import re
+import os
 
 def classify_title(title):
     if all(word[0].isupper() for word in title.split()):
@@ -18,7 +19,7 @@ def classify_title(title):
     for keyword in place_keywords:
         if keyword in title.lower():
             return 'place'
-    
+
     return 'item'
 
 def formulate_question(title):
