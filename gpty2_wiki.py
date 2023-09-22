@@ -106,9 +106,9 @@ def get_random_wikipedia_articles(num_articles=10):
     return '\n\n'.join(articles)
 
 # Hyperparameters
-batch_size = 64
+batch_size = 256
 block_size = 256
-max_iters = 5000
+max_iters = 1500
 eval_interval = 500
 learning_rate = 3e-4
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
